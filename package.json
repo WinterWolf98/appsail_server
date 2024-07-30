@@ -1,9 +1,10 @@
 {
   "name": "appsail_server",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.1-alpha.0",
+  "description": "AppSail server with Express",
   "type": "module",
   "main": "lib/index.js",
+  "private": "true",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node lib/index.js",
