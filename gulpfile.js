@@ -46,10 +46,10 @@ gulp.task('transpile', function() {
         .pipe(gulp.dest(join(BUILD_DIR, 'lib')));
 });
  
-gulp.task('copy-pkg-json', () => {
-    gulp.src('./package.json').pipe(gulp.dest(BUILD_DIR))
-    gulp.src('./package-lock.json').pipe(gulp.dest(BUILD_DIR))
-});
+gulp.task('copy-pkg-json',
+    () => gulp.src('./package.json').pipe(gulp.dest(BUILD_DIR)),
+    () => gulp.src('./package-lock.json').pipe(gulp.dest(BUILD_DIR))
+);
 
 gulp.task('install-pkg', (done) => {
     const pkgInstall = exec(`npm install${ PRODUCTION ? ' --omit=dev' : '' }`, {

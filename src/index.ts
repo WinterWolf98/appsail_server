@@ -35,3 +35,9 @@ app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
   console.log(`http://localhost:${port}/`);
 })
+
+process.on('SIGINT', () => process.exit());
+
+process.on('exit', () => {
+  console.log('process exited');
+});

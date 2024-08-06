@@ -1,8 +1,10 @@
 {
-	"command": "NODE_PATH=./node_modules node lib/index.js",
+	"command": "node lib/index.js",
 	"build_path": "./build",
 	"stack": "node18",
-	"env_variables": {},
+	"env_variables": {
+		"NODE_PATH": "./node_modules"
+	},
 	"memory": 256,
 	"scripts": {
 		"preserve": "npm run build && npm run build:watch & disown;",
