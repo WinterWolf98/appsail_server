@@ -7,7 +7,8 @@
 	},
 	"memory": 256,
 	"scripts": {
-		"preserve": "npm run build && npm run build:watch & disown;",
+		"preserve": "npm run build",
+		"preserve-watch": "npm run build && npm run build:watch & disown;",
 		"predeploy": "PRODUCTION=true npm run build"
 	},
 	"catalyst_auth": true,
