@@ -29,4 +29,4 @@ RUN npm run build
 EXPOSE 3000
 
 # Command to run the application
-CMD ["node", "./build/lib/index.js"]
+CMD ["node", "/usr/src/app/build/lib/index.js"]

@@ -22,14 +22,14 @@ app.use(async (req, res, next) => {
   next();
 });
 
-app.get('/', (req, res) => {
-  res.redirect('/app');
-});
-
-app.use('/app', Express.static('./client'));
+app.use('/app', Express.static(join(__dirname, '../client')));
 
 app.use('/apis', (req, res) => {
   return res.status(200).send('success');
+});
+
+app.get('/', (req, res) => {
+  res.redirect('/app');
 });
 
 app.listen(port, () => {
