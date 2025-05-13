@@ -1,11 +1,15 @@
 {
-	"command": "node index.js",
-	"build_path": "./express_hw",
+	"command": "node lib/index.js",
+	"build_path": "./build",
 	"stack": "node18",
-	"env_variables": {},
+	"env_variables": {
+		"NODE_PATH": "./node_modules"
+	},
 	"memory": 256,
 	"scripts": {
-		"preserve": "echo 'cd <json-viewer-path> && npm run build'" 
+		"preserve": "npm run build",
+		"preserve-watch": "npm run build && npm run build:watch & disown;",
+		"predeploy": "PRODUCTION=true npm run build"
 	},
 	"catalyst_auth": true,
 	"login_redirect": "/"

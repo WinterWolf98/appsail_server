@@ -1,8 +1,12 @@
 # catalyst
 .catalystrc
 catalyst.json
-node_modules
+
+# project specific
 client
+lib
+node_modules
+build
 
 # Logs
 logs

@@ -1,0 +1,39 @@
+name: Build Docker Image
+
+on:
+  push:
+    branches:
+      - typescript
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # GitHub Actions runner with Docker installed
+  
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3 
+      
+      - name: Download client artifact from external repository
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          workflow: build-react.yaml
+          repo: WinterWolf98/json-viewer
+          branch: catalyst
+          name: react-build
+          path: ./client
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        run: |
+          docker build -f Dockerfile -t localhost/express-app:latest --platform linux/amd64 .
+          docker save localhost/express-app:latest -o express-app.tar
+
+      - name: Upload Docker image as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: docker-image
+          path: express-app.tar
