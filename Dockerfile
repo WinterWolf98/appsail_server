@@ -1,5 +1,5 @@
 # Use the official Node.js image as the base
-FROM node:23-slim
+FROM amd64/node:23-slim
 
 # RUN apt-get update && \
 #     apt-get install -y --no-install-recommends \
