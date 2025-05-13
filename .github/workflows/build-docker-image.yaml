@@ -23,7 +23,7 @@ jobs:
           branch: catalyst
           name: react-build
           path: ./client.zip
-          event: push
+          # event: push
           run_id: latest
 
       - name: Unzip client artifact
