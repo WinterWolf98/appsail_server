@@ -40,7 +40,7 @@ jobs:
           docker save localhost/express-app:latest -o express-app.tar
 
       - name: Upload Docker image as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: docker-image
           path: express-app.tar
