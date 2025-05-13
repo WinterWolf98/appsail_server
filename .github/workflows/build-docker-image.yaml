@@ -23,13 +23,11 @@ jobs:
           branch: catalyst
           name: react-build
           path: ./client.zip
-          # event: push
-          run_id: latest
 
-      - name: Unzip client artifact
-        run: |
-          mkdir -p client
-          unzip -o './client.zip' -d client
+      # - name: Unzip client artifact
+      #   run: |
+      #     mkdir -p client
+      #     unzip -o './client.zip' -d client
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
