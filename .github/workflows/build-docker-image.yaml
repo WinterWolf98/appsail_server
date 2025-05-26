@@ -47,5 +47,5 @@ jobs:
       - name: "Deploy to Catalyst"
         run: |
           ./catalyst-cli/node_modules/.bin/catalyst -v
-          ./catalyst-cli/node_modules/.bin/catalyst deploy appsail --source  --token ${{ secrets.ZCATALYST_TOKEN }} --org ${{ vars.ORG_ID}} --project ${{ vars.PROJECT_ID}}
+          ./catalyst-cli/node_modules/.bin/catalyst deploy appsail --source  --token ${{ secrets.ZCATALYST_TOKEN }} --org ${{ env.ORG_ID }} --project ${{ env.PROJECT_ID }} --verbose
           
