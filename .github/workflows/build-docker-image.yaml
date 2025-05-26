@@ -51,5 +51,5 @@ jobs:
           PROJECT_ID: ${{ vars.PROJECT_ID }}
         run: |
           ./catalyst-cli/node_modules/.bin/catalyst -v
-          ./catalyst-cli/node_modules/.bin/catalyst deploy appsail --source  --token $ZCATALYST_TOKEN --org 60035305391 --project 11533000000016001 --verbose
+          ./catalyst-cli/node_modules/.bin/catalyst deploy appsail --source "docker://localhost/express-app:latest" --name github-image --token $ZCATALYST_TOKEN --org 60035305391 --project 11533000000016001 --verbose
           
