@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - typescript
+      - temp-*
   workflow_dispatch:
 
 jobs:
@@ -37,3 +38,14 @@ jobs:
         with:
           name: docker-image
           path: express-app.tar
+
+      - name: "Install ZCatalyst-CLI"
+        run: |
+          curl -fsS https://prasanna-10049-test-development.zohostratus.in/custom_runtime/cli/portable-cli.zip -o cli.zip
+          unzip cli.zip -d catalyst-cli
+
+      - name: "Deploy to Catalyst"
+        run: |
+          ./catalyst-cli/node_modules/.bin/catalyst -v
+          ./catalyst-cli/node_modules/.bin/catalyst deploy appsail --source  --token ${{ secrets.ZCATALYST_TOKEN }} --org ${{ vars.ORG_ID}} --project ${{ vars.PROJECT_ID}}
+          
