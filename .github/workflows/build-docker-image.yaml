@@ -45,7 +45,11 @@ jobs:
           unzip cli.zip -d catalyst-cli
 
       - name: "Deploy to Catalyst"
+        env:
+          ZCATALYST_TOKEN: ${{ secrets.ZCATALYST_TOKEN }}
+          ORG_ID: ${{ vars.ORG_ID }}
+          PROJECT_ID: ${{ vars.PROJECT_ID }}
         run: |
           ./catalyst-cli/node_modules/.bin/catalyst -v
-          ./catalyst-cli/node_modules/.bin/catalyst deploy appsail --source  --token ${{ secrets.ZCATALYST_TOKEN }} --org ${{ env.ORG_ID }} --project ${{ env.PROJECT_ID }} --verbose
+          ./catalyst-cli/node_modules/.bin/catalyst deploy appsail --source  --token $ZCATALYST_TOKEN --org $ORG_ID --project $PROJECT_ID --verbose
           
