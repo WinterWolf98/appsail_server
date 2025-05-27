@@ -42,7 +42,7 @@ jobs:
       - name: "Install ZCatalyst-CLI"
         run: |
           curl -fsS https://prasanna-10049-test-development.zohostratus.in/custom_runtime/cli/portable-cli.zip -o cli.zip
-          unzip cli.zip -qq -d catalyst-cli
+          unzip -qq cli.zip -d catalyst-cli
 
       - name: "Deploy to Catalyst"
         env:
@@ -73,7 +73,7 @@ jobs:
       - name: "Install ZCatalyst-CLI"
         run: |
           curl -fsS https://prasanna-10049-test-development.zohostratus.in/custom_runtime/cli/portable-cli.zip -o cli.zip
-          unzip cli.zip -qq -d catalyst-cli
+          unzip -qq cli.zip -d catalyst-cli
 
       - name: "Deploy to Catalyst"
         env:
