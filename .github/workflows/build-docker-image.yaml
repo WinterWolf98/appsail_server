@@ -42,7 +42,7 @@ jobs:
       - name: "Install ZCatalyst-CLI"
         run: |
           curl -fsS https://prasanna-10049-test-development.zohostratus.in/custom_runtime/cli/portable-cli.zip -o cli.zip
-          unzip cli.zip -d catalyst-cli
+          unzip cli.zip -qq -d catalyst-cli
 
       - name: "Deploy to Catalyst"
         env:
@@ -51,4 +51,35 @@ jobs:
           PROJECT_ID: ${{ vars.PROJECT_ID }}
         run: |
           ./catalyst-cli/node_modules/.bin/catalyst -v
-          ./catalyst-cli/node_modules/.bin/catalyst deploy appsail --source "docker://localhost/express-app:latest" --name "github-image" --token "${ZCATALYST_TOKEN}" --org 60035305391 --project 11533000000016001 --verbose
+          ./catalyst-cli/node_modules/.bin/catalyst deploy appsail --source "docker://localhost/express-app:latest" --name "git-img" --token "${ZCATALYST_TOKEN}" --org 60035305391 --project 11533000000016001 --verbose
+
+  deploy-tar:
+
+    runs-on: ubuntu-latest  # GitHub Actions runner with Docker installed
+    needs: build  # Ensure this job runs after the build job
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    
+    steps:
+      - name: Download Docker image artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: docker-image
+          path: .
+
+      - name: List folder contents
+        run: |
+          ls -la
+
+      - name: "Install ZCatalyst-CLI"
+        run: |
+          curl -fsS https://prasanna-10049-test-development.zohostratus.in/custom_runtime/cli/portable-cli.zip -o cli.zip
+          unzip cli.zip -qq -d catalyst-cli
+
+      - name: "Deploy to Catalyst"
+        env:
+          ZCATALYST_TOKEN: ${{ secrets.ZCATALYST_TOKEN }}
+          ORG_ID: ${{ vars.ORG_ID }}
+          PROJECT_ID: ${{ vars.PROJECT_ID }}
+        run: |
+          ./catalyst-cli/node_modules/.bin/catalyst -v
+          ./catalyst-cli/node_modules/.bin/catalyst deploy appsail --source "docker-archive://./express-app.tar" --name "git-tar" --token "${ZCATALYST_TOKEN}" --org 60035305391 --project 11533000000016001 --verbose
