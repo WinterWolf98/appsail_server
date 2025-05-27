@@ -57,7 +57,7 @@ jobs:
 
     runs-on: ubuntu-latest  # GitHub Actions runner with Docker installed
     needs: build  # Ensure this job runs after the build job
-    if: ${{ github.event_name == 'workflow_dispatch' }}
+    if: github.event_name == 'workflow_dispatch'  # Only allow manual trigger
     
     steps:
       - name: Download Docker image artifact
