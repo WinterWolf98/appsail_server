@@ -7,6 +7,10 @@ import morgan from "morgan";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
+console.log('Dirname: ', __dirname);
+console.log('Static files will be served from: ', join(__dirname, '../client'));
+
 const app = Express()
 const port = process.env.X_ZOHO_CATALYST_LISTEN_PORT || 9000;
 
