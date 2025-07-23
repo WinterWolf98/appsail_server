@@ -35,4 +35,4 @@ RUN rm -rf source-files
 EXPOSE 3000
 
 # Command to run the application
-CMD ["node", "/usr/src/app/execution-files/lib/index.js"]
+CMD ["node", "execution-files/lib/index.js"]
